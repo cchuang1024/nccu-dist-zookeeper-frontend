@@ -1,6 +1,4 @@
-<<<<<<< HEAD
-# nccu-dist-zookeeper-frontend
-=======
+
 # nccu-dist-zookeeper-frontend
 ```
 node version:v12.19.0
@@ -25,7 +23,3 @@ npm run build
 ```
 npm run lint
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
->>>>>>> init
