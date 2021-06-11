@@ -1,31 +1,32 @@
 <template>
   <div id="app">
     <common-header/>
-    <cover-section/>
-    <player-section></player-section>
-    <team-section/>
+      <router-view></router-view>
     <common-footer/>
   </div>
 </template>
 
 <script>
-// import HelloWorld from './components/HelloWorld.vue'
 import commonHeader from "./components/commonHeader";
-import coverSection from "./components/coverSection";
 import $ from "jquery";
 import jQuery from "jquery";
-import PlayerSection from "./components/playerSection";
 import CommonFooter from "./components/commonFooter";
-import TeamSection from "./components/teamSection";
+// import Vue from 'vue';
+// import VueAwesomeSwiper from  'vue-awesome-swiper'
+// import{swiper, swiperSlide} from 'vue-awesome-swiper'
+// import 'swiper/dist/css/swiper.css'
+// Vue.use(VueAwesomeSwiper);
 
 export default {
   name: 'App',
   components: {
-    TeamSection,
+    // TeamSection,
     CommonFooter,
-    PlayerSection,
+    // PlayerSection,
     commonHeader,
-    coverSection
+    // coverSection,
+    // swiper,
+    // swiperSlide
   },
   created() {
     this.testFunc();

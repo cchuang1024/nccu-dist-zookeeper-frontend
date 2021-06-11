@@ -5,8 +5,10 @@ import router from "./router";
 
 import 'bootstrap'; // Import js file
 import 'bootstrap/dist/css/bootstrap.min.css'; // Import css file
+import 'bootstrap/dist/css/bootstrap-utilities.min.css'; // Import css file
 Vue.config.productionTip = false
-
+import '@fortawesome/fontawesome-free/css/all.css'
+import '@fortawesome/fontawesome-free/js/all.js'
 // const app = createApp(App);
 
 import AOS from "aos";

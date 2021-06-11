@@ -1,16 +1,25 @@
 <template>
   <div class="home">
-    123
+    <cover-section/>
+    <about-section/>
+    <play-list-section/>
+    <team-section/>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-// import HelloWorld from '@/components/HelloWorld.vue'
+import coverSection from "../components/coverSection";
+import aboutSection from "../components/aboutSection";
+import teamSection from "../components/teamSection";
+import playListSection from "../components/playListSection";
 
 export default {
   name: 'Home',
   components: {
+    coverSection,
+    aboutSection,
+    teamSection,
+    playListSection
     // HelloWorld
   }
 }
