@@ -8,8 +8,8 @@
             <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
             <nav class="nav-menu d-none d-lg-block">
                 <ul>
-                    <li class="active"><router-link to="/">Home</router-link></li>
-                    <li><router-link to="/about">About</router-link></li>
+                    <li><router-link class="orange-line" to="/">Home</router-link></li>
+                    <li><router-link class="orange-line" to="/about">About</router-link></li>
                 </ul>
             </nav><!-- .nav-menu -->
 
@@ -25,5 +25,19 @@
 </script>
 
 <style scoped>
-
+    .orange-line:before{
+        content: "";
+        position: absolute;
+        width: 0%;
+        height: 2px;
+        bottom: -6px;
+        left: 0;
+        background-color: #ff4a17;
+        visibility: hidden;
+        transition: all 0.3s ease-in-out 0s;
+    }
+    .router-link-exact-active.orange-line:before{
+        visibility: visible;
+        width:100%;
+    }
 </style>

@@ -1,74 +1,34 @@
 ﻿<template>
     <!-- ======= About Section ======= -->
-    <section id="about" class="about">
-        <div class="container" data-aos="fade-up">
-
-
-            <div class="row p-5">
-
-                <div class="col-lg-6 video-box align-self-baseline" data-aos="zoom-in" data-aos-delay="0">
-                    <div class="ratio ratio-16x9">
-                        <video src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm"
-                               title="Test video"
-                               preload="metadata"  controls ></video>
+    <section id="hero">
+        <div class="hero-container" data-aos="fade-up" data-aos-delay="150">
+            <div class="container">
+                <div class="row">
+                    <div class="col-6">
+                        <h1>What is Zookeeper?</h1>
                     </div>
-                </div>
+                    <div class="col-6">
+                        <h4 class="about-description">ZooKeeper is a centralized service for maintaining configuration information, naming, providing distributed synchronization, and providing group services. All of these kinds of services are used in some form or another by distributed applications. Each time they are implemented there is a lot of work that goes into fixing the bugs and race conditions that are inevitable. Because of the difficulty of implementing these kinds of services, applications initially usually skimp on them, which make them brittle in the presence of change and difficult to manage. Even when done correctly, different implementations of these services lead to management complexity when the applications are deployed.
 
-                <div class="col-lg-6 p-3 pt-lg-0 content">
-                    <h3>This is a test  video</h3>
-                    <p class="font-italic">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                        magna aliqua.
-                    </p>
-                </div>
-
-            </div>
-            <div class="row justify-content-end">
-                <div class="col-lg-11">
-                    <div class="row justify-content-end">
-
-                        <div class="col-lg-3 col-md-5 col-6 d-md-flex align-items-md-stretch">
-                            <div class="count-box">
-                                <span data-toggle="counter-up">65</span>
-                                <p>Happy Clients</p>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-3 col-md-5 col-6 d-md-flex align-items-md-stretch">
-                            <div class="count-box">
-                                <span data-toggle="counter-up">85</span>
-                                <p>Projects</p>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-3 col-md-5 col-6 d-md-flex align-items-md-stretch">
-                            <div class="count-box">
-                                <span data-toggle="counter-up">12</span>
-                                <p>Years of experience</p>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-3 col-md-5 col-6 d-md-flex align-items-md-stretch">
-                            <div class="count-box">
-                                <span data-toggle="counter-up">15</span>
-                                <p>Awards</p>
-                            </div>
-                        </div>
-
+                            Learn more about ZooKeeper on the ZooKeeper Wiki</h4>
                     </div>
                 </div>
             </div>
-
         </div>
-    </section><!-- End About Section -->
+    </section><!-- End Hero -->
 </template>
 
 <script>
     export default {
-        name: "playerSection"
+        name: "coverSection.vue"
     }
 </script>
 
 <style scoped>
-
+.about-description{
+    color: white;
+    text-align: left;
+    line-height: 150%;
+    font-weight: 100;
+}
 </style>

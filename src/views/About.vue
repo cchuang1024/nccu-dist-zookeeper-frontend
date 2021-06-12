@@ -1,5 +1,16 @@
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
+    <about-section/>
   </div>
 </template>
+
+<script>
+  import aboutSection from "../components/aboutSection";
+
+  export default {
+    name: 'About',
+    components: {
+      aboutSection,
+    },
+  }
+</script>

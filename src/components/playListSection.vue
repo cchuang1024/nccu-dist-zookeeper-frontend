@@ -3,16 +3,21 @@
     <div class="container-fluid">
         <div class="row inside-shadow">
             <swiper class="swiper" :options="swiperOption">
-                <swiper-slide class="play-list-item" v-for="(item,index) in playList" :key="index">
-                    <div class="ratio ratio-16x9">
-                        <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="venobox play-btn mb-4" data-vbtype="video" data-autoplay="true"></a>
-                        <video src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm"
+                <swiper-slide  class="play-list-item" v-for="(item,index) in playList" :key="index">
+                    <router-link :to="'/watch/'+item.ID">
+                    <div data-aos-anchor-placement="top-bottom" data-aos="fade-up" :data-aos-delay="(index+1)*100"  class="ratio ratio-16x9">
+                        <video :src="item.Url"
                                title="Test video"
                                preload="metadata"  controls></video>
                     </div>
                     <div class="video-title">{{item.title}}</div>
+                    <br>
+                    </router-link>
                 </swiper-slide>
-                <div class="swiper-pagination" slot="pagination"></div>
+                <div class="swiper-scrollbar" slot="scrollbar"></div>
+<!--                <div class="swiper-button-prev" slot="button-prev"></div>-->
+<!--                <div class="swiper-button-next" slot="button-next"></div>-->
+<!--                <div class="swiper-pagination" slot="pagination"></div>-->
             </swiper>
         </div>
     </div>
@@ -28,46 +33,29 @@
     export default {
         name: 'swiper-example-free-mode',
         title: 'Free mode / No fixed positions',
+        props:["playList"],
         components: {
             swiper,
             swiperSlide
         },
         data() {
             return {
-                playList:[
-                    {
-                        title:"Test Video 1",
-                        Url:"https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm"
-                    },
-                    {
-                        title:"Test Video 2",
-                        Url:"https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm"
-                    },
-                    {
-                        title:"Test Video 3",
-                        Url:"https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm"
-                    },
-                    {
-                        title:"Test Video 4",
-                        Url:"https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm"
-                    },
-                    {
-                        title:"Test Video 5",
-                        Url:"https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm"
-                    },
-                    {
-                        title:"Test Video 6",
-                        Url:"https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm"
-                    },
-                ],
                 swiperOption: {
-                    slidesPerView: 3,
+                    slidesPerView: 4,
                     spaceBetween: 30,
                     freeMode: true,
+                    navigation: {
+                        nextEl: '.swiper-button-next',
+                        prevEl: '.swiper-button-prev'
+                    },
                     pagination: {
                         el: '.swiper-pagination',
                         clickable: true
-                    }
+                    },
+                    scrollbar: {
+                        el: '.swiper-scrollbar'
+                    },
+                    mousewheel: true,
                 }
             }
         }
@@ -76,11 +64,12 @@
 
 <style lang="scss" scoped>
     .play-list-item{
-        padding: 25px 5px 5px;
+        background-color: rgba(255, 255, 255, 0.8);
+        padding: 25px 15px 5px;
         width: 300px;
-        height: 300px;
+        height: auto;
         margin: 50px auto;
-        box-shadow: 2px 7px 10px 0 #D1D1D1;
+        box-shadow: 0px 3px 18px rgb(0 0 0 / 10%);
         /*background-color: #5e5e5e;*/
     }
     .video-title{
@@ -88,6 +77,13 @@
         text-align: center;
     }
     .inside-shadow{
-        box-shadow: inset 0px 11px 25px 0px #D1D1D1;
+        /*padding: 50px 0;*/
+        /*box-shadow: inset 20px 20px 25px 20px #D1D1D1;*/
+    }
+    .swiper-button-prev, .swiper-container-rtl .swiper-button-next{
+        left: 100px;
+    }
+    .swiper-button-next, .swiper-container-rtl .swiper-button-prev{
+        right: 100px;
     }
 </style>
