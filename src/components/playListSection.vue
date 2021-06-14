@@ -1,15 +1,15 @@
-
 <template>
     <div class="container-fluid">
         <div class="row inside-shadow">
             <swiper class="swiper" :options="swiperOption">
                 <swiper-slide  class="play-list-item" v-for="(item,index) in playList" :key="index">
                     <router-link :to="'/watch/'+item.ID">
-                    <div data-aos-anchor-placement="top-bottom" data-aos="fade-up" :data-aos-delay="(index+1)*100"  class="ratio ratio-16x9">
-                        <video :src="item.Url"
-                               title="Test video"
-                               preload="metadata"  controls></video>
-                    </div>
+<!--                    <div data-aos-anchor-placement="top-bottom" data-aos="fade-up" :data-aos-delay="(index+1)*100"  class="ratio ratio-16x9">-->
+<!--                        <video id="myVideo"-->
+<!--                        class="video-js vjs-default-skin vjs-big-play-centered"-->
+<!--                        title="Test video"-->
+<!--                        preload="metadata"  controls></video>-->
+<!--                    </div>-->
                     <div class="video-title">{{item.title}}</div>
                     <br>
                     </router-link>
@@ -25,6 +25,9 @@
     import VueAwesomeSwiper from  'vue-awesome-swiper'
     import{swiper, swiperSlide} from 'vue-awesome-swiper'
     import 'swiper/dist/css/swiper.css'
+    import videojs from "video.js";
+    import 'dashjs' ;
+    import 'videojs-contrib-dash';
     Vue.use(VueAwesomeSwiper);
 
     export default {
@@ -55,6 +58,21 @@
                     mousewheel: true,
                 }
             }
+        },
+        mounted() {
+            // this.player();
+        },
+        methods:{
+            player(){
+                let player=videojs('myVideo');
+                player.ready(function(){
+                    player.src({
+                        src:"http://172.23.211.189:1935/NCCUMediaNetwork/mp4:test-video.mp4/manifest.mpd",
+                        type:"application/dash+xml"
+                    })
+                    player.play();
+                })
+            },
         }
     }
 </script>

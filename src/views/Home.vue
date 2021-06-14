@@ -25,7 +25,7 @@ export default {
         {
           ID: 0,
           title: "Test Video 0",
-          Url: "https://wedistill.io/uploads/videos/processed/757/girlbythesea.mp4.mp4"
+          Url: "http://172.23.211.189:1935/NCCUMediaNetwork/mp4:test-video.mp4/manifest.mpd"
         },
         {
           ID: 1,

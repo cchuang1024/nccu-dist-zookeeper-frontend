@@ -13,6 +13,9 @@ import '@fortawesome/fontawesome-free/js/all.js'
 
 import AOS from "aos";
 import "aos/dist/aos.css";
+import Video from 'video.js';
+import 'video.js/dist/video-js.css';
+Vue.prototype.$video = Video;
 AOS.init();
 // app.AOS = new AOS.init({ disable: "phone" });
 

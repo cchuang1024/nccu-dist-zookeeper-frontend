@@ -1,16 +1,16 @@
 ﻿<template>
     <!-- ======= About Section ======= -->
+    <div>
     <section id="about" class="about">
         <div style="background-color: rgba(255,255,255,0.8)" class="container" data-aos="fade-up">
-
-
             <div class="row p-5">
-
                 <div class="col-lg-6 video-box align-self-baseline" data-aos="zoom-in" data-aos-delay="0">
                     <div class="ratio ratio-16x9">
-                        <video :src="videoInfo.Url"
+                        <video id="myVideo"
+                               class="video-js vjs-default-skin vjs-big-play-centered"
                                title="Test video"
-                               preload="metadata"  controls ></video>
+                               preload="metadata"  controls
+                        ></video>
                     </div>
                 </div>
                 <div class="col-lg-6 p-3 pt-lg-0 content">
@@ -20,7 +20,6 @@
                         magna aliqua.
                     </p>
                 </div>
-
             </div>
             <div class="row justify-content-end">
                 <div class="col-lg-11">
@@ -57,18 +56,44 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </section><!-- End About Section -->
+    </div>
 </template>
 
 <script>
+    import videojs from "video.js";
+    import 'dashjs' ;
+    import 'videojs-contrib-dash';
+    import 'video.js/dist/video-js.css';
+    
     export default {
         name: "playerSection",
         props:["videoInfo"],
+        mounted() {
+            this.player();
+        },
+        methods:{
+            player(){
+                let player=videojs('myVideo');
+                let videoUrl = this.videoInfo.Url;
+                alert(videoUrl);
+                player.ready(function(){
+                    player.src({
+                        src:videoUrl,
+                        type:"application/dash+xml"
+                    })
+
+                    // player.play();
+                })
+            },
+        }
     }
+
 </script>
 
 <style scoped>
-
+.video-js{
+    position: absolute!important;
+}
 </style>

@@ -3,6 +3,11 @@
     <common-header/>
       <router-view></router-view>
     <common-footer/>
+<!--    <video id="myVideo"-->
+<!--           class="video-js vjs-default-skin vjs-big-play-centered"-->
+<!--           title="Test video"-->
+<!--           preload="metadata"  controls>-->
+<!--    </video>-->
   </div>
 </template>
 
@@ -16,7 +21,9 @@ import CommonFooter from "./components/commonFooter";
 // import{swiper, swiperSlide} from 'vue-awesome-swiper'
 // import 'swiper/dist/css/swiper.css'
 // Vue.use(VueAwesomeSwiper);
-
+// import videojs from 'video.js';
+import 'dashjs' ;
+import 'videojs-contrib-dash';
 export default {
   name: 'App',
   components: {
@@ -32,7 +39,21 @@ export default {
     this.testFunc();
     this.jQ();
   },
+  mounted() {
+    // this.player();
+  },
   methods:{
+    // player(){
+    //   let player=videojs('myVideo');
+    //   player.ready(function(){
+    //     player.src({
+    //       src:"http://172.23.211.189:1935/NCCUMediaNetwork/mp4:test-video.mp4/manifest.mpd",
+    //       type:"application/dash+xml"
+    //     })
+    //
+    //     player.play();
+    //   })
+    // },
     testFunc(){
       console.log($);
     },

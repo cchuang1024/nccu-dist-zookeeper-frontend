@@ -2,20 +2,20 @@
     <div class="watch">
         <div class="watch-container">
             <watch-section :videoInfo="playList[$route.params.ID]"/>
-            <play-list-section :playList="playList"/>
+<!--            <play-list-section :playList="playList"/>-->
         </div>
     </div>
 </template>
 
 <script>
     import watchSection from "../components/watchSection";
-    import playListSection from "../components/playListSection";
+    // import playListSection from "../components/playListSection";
 
     export default {
         name: 'Watch',
         components: {
             watchSection,
-            playListSection
+            // playListSection
         },
         data() {
             return {
@@ -23,7 +23,7 @@
                     {
                         ID: 0,
                         title: "Test Video 0",
-                        Url: "https://wedistill.io/uploads/videos/processed/757/girlbythesea.mp4.mp4"
+                        Url: "http://172.23.211.189:1935/NCCUMediaNetwork/mp4:test-video.mp4/manifest.mpd"
                     },
                     {
                         ID: 1,
