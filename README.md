@@ -23,3 +23,8 @@ npm run build
 ```
 npm run lint
 ```
+
+## zookeeper.js setup
+```
+$ npm install node-zookeeper-client
+```
