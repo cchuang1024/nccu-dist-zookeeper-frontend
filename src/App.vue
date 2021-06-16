@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <common-header/>
+    <keep-alive>
       <router-view></router-view>
+    </keep-alive>
     <common-footer/>
 <!--    <video id="myVideo"-->
 <!--           class="video-js vjs-default-skin vjs-big-play-centered"-->

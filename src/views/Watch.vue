@@ -28,7 +28,7 @@
                     {
                         ID: 1,
                         title: "Test Video 1",
-                        Url: "https://wedistill.io/uploads/videos/processed/1007/2015-03-29-01.mp4.mp4"
+                        Url: "https://livesim.dashif.org/livesim/chunkdur_1/ato_7/testpic4_8s/Manifest.mpd"
                     },
                     {
                         ID: 2,
