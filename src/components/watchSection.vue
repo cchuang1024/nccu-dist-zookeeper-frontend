@@ -66,6 +66,7 @@
     import 'dashjs' ;
     import 'videojs-contrib-dash';
     import 'video.js/dist/video-js.css';
+    import ZooKeeper from 'node-zookeeper-client';
     
     export default {
         name: "playerSection",
@@ -75,9 +76,25 @@
         },
         methods:{
             player(){
+                // const CONNECTION_STRING="172.19.64.228:2181";
+                // const OPTIONS={
+                //     sessionTimeout:5000
+                // };
+                // let zk = ZooKeeper.createClient(CONNECTION_STRING,OPTIONS);
+                //
+                // console.log(zk);
+                // zk.once('connected',function(){
+                //     console.log("zk.session_id==" , zk.getSessionId());
+                //     zk.close();
+                // });
+                //
+                // zk.getData('/zkApp/host',function(error,data){
+                //     console.log(data.toString().substr(7,14));
+                // });
+                // zk.connect();
+
                 let player=videojs('myVideo');
                 let videoUrl = this.videoInfo.Url;
-                alert(videoUrl);
                 player.ready(function(){
                     player.src({
                         src:videoUrl,
