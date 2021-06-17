@@ -74,6 +74,10 @@
         props:["videoInfo"],
         mounted() {
             this.player();
+            setTimeout(() => {
+                this.videoInfo.Url = "http://172.31.142.231:1935/NCCUMediaNetwork/mp4:test-video.mp4/manifest.mpd";
+                this.player();
+            }, 10000)
         },
         activated() {
             this.player();
@@ -117,6 +121,7 @@
 
                     player.on('progress', function() {
                         console.log('progress-加载过程');
+                        console.log(videoUrl);
                     });
                 
                     //播放时长(秒)
