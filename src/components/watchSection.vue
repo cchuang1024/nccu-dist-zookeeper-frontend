@@ -48,7 +48,7 @@
 
                         <div class="col-lg-3 col-md-5 col-6 d-md-flex align-items-md-stretch">
                             <div class="count-box">
-                                <span data-toggle="counter-up">15</span>
+                                <span data-toggle="counter-up">16</span>
                                 <p>Awards</p>
                             </div>
                         </div>
