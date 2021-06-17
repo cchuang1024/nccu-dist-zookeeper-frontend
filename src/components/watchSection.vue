@@ -67,33 +67,19 @@
     import 'videojs-contrib-dash';
     import 'video.js/dist/video-js.css';
     //import ZooKeeper from 'node-zookeeper-client';
-    
-    var lastLearnTime=null;
+
+    let lastLearnTime = null;
     export default {
         name: "playerSection",
         props:["videoInfo"],
         mounted() {
             this.player();
         },
+        activated() {
+            this.player();
+        },
         methods:{
             player(){
-                // const CONNECTION_STRING="172.19.64.228:2181";
-                // const OPTIONS={
-                //     sessionTimeout:5000
-                // };
-                // let zk = ZooKeeper.createClient(CONNECTION_STRING,OPTIONS);
-                //
-                // console.log(zk);
-                // zk.once('connected',function(){
-                //     console.log("zk.session_id==" , zk.getSessionId());
-                //     zk.close();
-                // });
-                //
-                // zk.getData('/zkApp/host',function(error,data){
-                //     console.log(data.toString().substr(7,14));
-                // });
-                // zk.connect();
-
                 let player=videojs('myVideo');
                 let videoUrl = this.videoInfo.Url;
                 //var lastLearnTime=null;
@@ -107,8 +93,8 @@
 
                     player.on('loadstart', function() {
                         console.log('loadstart')
-                    });                   
-                    
+                    });
+
                     player.on('loadedmetadata', function() {
                         console.log('loadedmetadata-视频源数据加载完成')
                         //设置上次播放时间lastLearnTime(秒)                       
@@ -117,20 +103,29 @@
                     });
                     player.on('loadeddata', function() {
                         console.log('loadeddata-渲染播放画面'); //autoPlay必须为false
-                    });                    
+                    });
+
+                    player.on('error', function() {
+                        console.log('error');
+                        //monitor api
+                    });
+
+                    player.on('waiting', function() {
+                        console.log('waiting');
+                        //monitor api
+                    });
 
                     player.on('progress', function() {
-                        console.log('progress-加载过程')
-                        
+                        console.log('progress-加载过程');
                     });
                 
                     //播放时长(秒)
-                    var totalTime = 0;
+                    let totalTime = 0;
                     // 监听播放进度
                     player.on('timeupdate', function() {
                         //当前播放时长(秒)
-                        var currentTime = Math.floor(player.currentTime());                
-                        if (currentTime > 0 && currentTime > totalTime && (currentTime % 5 == 0)) {
+                        let currentTime = Math.floor(player.currentTime());
+                        if (currentTime > 0 && currentTime > totalTime && (currentTime % 5 === 0)) {
                             //每隔5秒，向服务器提交播放时间(秒)
                             lastLearnTime=currentTime;                           
                         }
