@@ -2,57 +2,21 @@
     <div class="watch">
         <div class="watch-container">
             <watch-section :videoInfo="playList[$route.params.ID]"/>
-<!--            <play-list-section :playList="playList"/>-->
+            <play-list-section/>
         </div>
     </div>
 </template>
 
 <script>
     import watchSection from "../components/watchSection";
-    // import playListSection from "../components/playListSection";
+    import playListSection from "../components/playListSection";
 
     export default {
         name: 'Watch',
         components: {
             watchSection,
-            // playListSection
-        },
-        data() {
-            return {
-                playList: [
-                    {
-                        ID: 0,
-                        title: "Test Video 0",
-                        Url: "http://172.31.129.44:1935/NCCUMediaNetwork/mp4:test-video.mp4/manifest.mpd"
-                    },
-                    {
-                        ID: 1,
-                        title: "Test Video 1",
-                        Url: "https://livesim.dashif.org/livesim/chunkdur_1/ato_7/testpic4_8s/Manifest.mpd"
-                    },
-                    {
-                        ID: 2,
-                        title: "Test Video 2",
-                        Url: "https://wedistill.io/uploads/videos/processed/34/Adrift-HD.mp4.mp4"
-                    },
-                    {
-                        ID: 3,
-                        title: "Test Video 3",
-                        Url: "https://wedistill.io/uploads/videos/processed/256/HeadRoomTheDepartmentofChemistryGlassblowingShop.mp4.mp4"
-                    },
-                    {
-                        ID: 4,
-                        title: "Test Video 4",
-                        Url: "https://wedistill.io/uploads/videos/processed/803/citylifestyle.mp4.mp4"
-                    },
-                    {
-                        ID: 5,
-                        title: "Test Video 5",
-                        Url: "https://wedistill.io/uploads/videos/processed/1637/flow_in_the_sky.mp4"
-                    },
-                ],
-            }
-        },
+            playListSection
+        }
     }
 </script>
 

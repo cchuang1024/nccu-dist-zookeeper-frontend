@@ -9,15 +9,16 @@
                         <video id="myVideo"
                                class="video-js vjs-default-skin vjs-big-play-centered"
                                title="Test video"
-                               preload="metadata"  controls
+                               preload="metadata"
+                               poster="../assets/img/poster-1.jpg"
+                               controls
                         ></video>
                     </div>
                 </div>
                 <div class="col-lg-6 p-3 pt-lg-0 content">
                     <h3>{{videoInfo.title}}</h3>
                     <p class="font-italic">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                        magna aliqua.
+                        {{videoInfo.description}}
                     </p>
                 </div>
             </div>
@@ -52,7 +53,6 @@
                                 <p>Awards</p>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -66,7 +66,6 @@
     import 'dashjs' ;
     import 'videojs-contrib-dash';
     import 'video.js/dist/video-js.css';
-    //import ZooKeeper from 'node-zookeeper-client';
 
     let lastLearnTime = null;
     export default {
