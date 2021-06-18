@@ -76,6 +76,9 @@
         box-shadow: 0px 3px 18px rgb(0 0 0 / 10%);
         /*background-color: #5e5e5e;*/
     }
+    .video-js{
+        position: absolute!important;
+    }
     .video-title{
         padding-top: 15px;
         text-align: center;

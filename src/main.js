@@ -26,7 +26,7 @@ Vue.mixin({
           ID: 0,
           title: "School",
           Url: "http://172.24.132.182:1935/NCCUMediaNetwork/mp4:test-video.mp4/manifest.mpd",
-          poster: "../assets/img/poster-1.jpg",
+          poster: require('@/assets/img/poster-1.jpg'),
           description: "Interesting"
         },
         {
