@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <!-- ======= About Section ======= -->
     <div>
     <section id="about" class="about">
@@ -73,10 +73,10 @@
         props:["videoInfo"],
         mounted() {
             this.player();
-            setTimeout(() => {
-                this.videoInfo.Url = "http://172.31.142.231:1935/NCCUMediaNetwork/mp4:test-video.mp4/manifest.mpd";
-                this.player();
-            }, 10000)
+            // setTimeout(() => {
+            //     this.videoInfo.Url = "http://172.31.142.231:1935/NCCUMediaNetwork/mp4:test-video.mp4/manifest.mpd";
+            //     this.player();
+            // }, 10000)
         },
         activated() {
             this.player();

@@ -686,7 +686,7 @@ h1, h2, h3, h4, h5, h6 {
 
 #hero:before {
   content: "";
-  background: rgba(13, 20, 26, 0.7);
+  background: rgba(13, 20, 26, 0.3);
   position: absolute;
   bottom: 0;
   top: 0;
@@ -732,8 +732,8 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 4px;
   transition: 0.5s;
   color: #fff;
-  background: #ff4a17;
-  border: 2px solid #ff4a17;
+  background: #FFD306;
+  border: 2px solid #FFD306;
 }
 
 #hero .btn-get-started:hover {

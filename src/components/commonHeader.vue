@@ -32,7 +32,7 @@
         height: 2px;
         bottom: -6px;
         left: 0;
-        background-color: #ff4a17;
+        background-color: #FFD306;
         visibility: hidden;
         transition: all 0.3s ease-in-out 0s;
     }
