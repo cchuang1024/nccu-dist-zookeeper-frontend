@@ -66,30 +66,32 @@
     import 'dashjs' ;
     import 'videojs-contrib-dash';
     import 'video.js/dist/video-js.css';
+    import axios from 'axios';
 
     let lastLearnTime = null;
     export default {
         name: "playerSection",
         props:["videoInfo"],
         mounted() {
-            this.player();
-            setTimeout(() => {
-                this.videoInfo.Url = "http://172.31.142.231:1935/NCCUMediaNetwork/mp4:test-video.mp4/manifest.mpd";
-                this.player();
-            }, 10000)
+            this.getVideoInfo();
         },
         activated() {
-            this.player();
+            this.getVideoInfo();
+        },
+        data(){
+            return{
+                host: ""
+            }
         },
         watch: {
             videoInfo: function () {
-                this.player();
+                this.getVideoInfo();
             },
         },
         methods:{
             player(){
                 let player=videojs('myVideo');
-                let videoUrl = this.videoInfo.Url;
+                let videoUrl = "http://" + this.host + ":1935" + this.videoInfo.Url;
                 
                 player.ready(function(){
                     player.src({
@@ -114,12 +116,12 @@
 
                     player.on('error', function() {
                         console.log('error');
-                        //monitor api
+                        this.getVideoInfo();
                     });
 
                     player.on('waiting', function() {
                         console.log('waiting');
-                        //monitor api
+                        this.getVideoInfo();
                     });
 
                     player.on('progress', function() {
@@ -146,6 +148,17 @@
                     });
                 })
             },
+            getVideoInfo(){
+                axios({
+                    method: 'get',
+                    url: '/api/media-host'
+                })
+                     .then(response => {
+                    this.host = response.data.host;
+                }).then(
+                    this.player
+                )
+            }
         }
     }
 
