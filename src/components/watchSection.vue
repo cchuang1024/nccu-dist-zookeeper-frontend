@@ -1,4 +1,4 @@
-﻿<template>
+<template>
     <!-- ======= About Section ======= -->
     <div>
     <section id="about" class="about">
@@ -10,7 +10,7 @@
                                class="video-js vjs-default-skin vjs-big-play-centered"
                                title="Test video"
                                preload="metadata"
-                               poster="../assets/img/poster-1.jpg"
+                               :poster="videoInfo.poster"
                                controls
                         ></video>
                     </div>
@@ -81,11 +81,16 @@
         activated() {
             this.player();
         },
+        watch: {
+            videoInfo: function () {
+                this.player();
+            },
+        },
         methods:{
             player(){
                 let player=videojs('myVideo');
                 let videoUrl = this.videoInfo.Url;
-                //var lastLearnTime=null;
+                
                 player.ready(function(){
                     player.src({
                         src:videoUrl,
@@ -99,13 +104,12 @@
                     });
 
                     player.on('loadedmetadata', function() {
-                        console.log('loadedmetadata-视频源数据加载完成')
-                        //设置上次播放时间lastLearnTime(秒)                       
+                        console.log('loadedmetadata-載入完成')              
                         player.currentTime(lastLearnTime);
-                        console.log(`目前的时间点是${player.currentTime()}`)                        
+                        console.log(`現在時間${player.currentTime()}`)                        
                     });
                     player.on('loadeddata', function() {
-                        console.log('loadeddata-渲染播放画面'); //autoPlay必须为false
+                        console.log('loadeddata-渲染畫面'); 
                     });
 
                     player.on('error', function() {
@@ -119,7 +123,7 @@
                     });
 
                     player.on('progress', function() {
-                        console.log('progress-加载过程');
+                        console.log('progress');
                         console.log(videoUrl);
                     });
                 
@@ -138,7 +142,7 @@
                 
                     // 使用事件监听
                     player.on('ended', function() {
-                        videojs.log('播放结束了!');
+                        console.log('播放結束');
                     });
                 })
             },

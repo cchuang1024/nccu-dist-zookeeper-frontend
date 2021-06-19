@@ -25,19 +25,19 @@ Vue.mixin({
         {
           ID: 0,
           title: "School",
-          Url: "http://172.24.132.182:1935/NCCUMediaNetwork/mp4:test-video.mp4/manifest.mpd",
-          poster: require('@/assets/img/poster-1.jpg'),
+          Url: "http://172.25.222.79:1935/NCCUMediaNetwork/mp4:test-video.mp4/manifest.mpd",
+          poster: require('@/assets/img/poster-2.jpg'),
           description: "Interesting"
         },
         {
           ID: 1,
           title: "Test Video 1",
-          Url: "https://wedistill.io/uploads/videos/processed/1007/2015-03-29-01.mp4.mp4"
+          Url: "https://dash.akamaized.net/dash264/TestCases/2c/qualcomm/1/MultiResMPEG2.mpd"
         },
         {
           ID: 2,
           title: "Test Video 2",
-          Url: "https://wedistill.io/uploads/videos/processed/34/Adrift-HD.mp4.mp4"
+          Url: "https://livesim.dashif.org/livesim/chunkdur_1/ato_7/testpic4_8s/Manifest.mpd"
         },
         {
           ID: 3,

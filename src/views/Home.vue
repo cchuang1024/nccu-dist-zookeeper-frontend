@@ -17,11 +17,6 @@ export default {
     coverSection,
     teamSection,
     playListSection
-  },
-  data(){
-    return{
-     
-    }
   }
 }
 </script>
