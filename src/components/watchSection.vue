@@ -9,16 +9,15 @@
                         <video id="myVideo"
                                class="video-js vjs-default-skin vjs-big-play-centered"
                                title="Test video"
-                               preload="metadata"
-                               :poster="videoInfo.poster"
-                               controls
+                               preload="metadata"  controls
                         ></video>
                     </div>
                 </div>
                 <div class="col-lg-6 p-3 pt-lg-0 content">
                     <h3>{{videoInfo.title}}</h3>
                     <p class="font-italic">
-                        {{videoInfo.description}}
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+                        magna aliqua.
                     </p>
                 </div>
             </div>
@@ -53,6 +52,7 @@
                                 <p>Awards</p>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -66,6 +66,8 @@
     import 'dashjs' ;
     import 'videojs-contrib-dash';
     import 'video.js/dist/video-js.css';
+    //import ZooKeeper from 'node-zookeeper-client';
+
 
     let lastLearnTime = null;
     export default {
@@ -73,57 +75,79 @@
         props:["videoInfo"],
         mounted() {
             this.player();
-            // setTimeout(() => {
-            //     this.videoInfo.Url = "http://172.31.142.231:1935/NCCUMediaNetwork/mp4:test-video.mp4/manifest.mpd";
-            //     this.player();
-            // }, 10000)
+            /*setTimeout(() => {                          
+                this.videoInfo.Url = "http://172.30.165.163:1935/NCCUMediaNetwork/mp4:test-video.mp4/manifest.mpd";
+                this.player();
+            }, 10000)*/
+                     
         },
         activated() {
             this.player();
         },
-        watch: {
-            videoInfo: function () {
-                this.player();
-            },
-        },
         methods:{
             player(){
-                let player=videojs('myVideo');
-                let videoUrl = this.videoInfo.Url;
-                
+                let videoUrl
+                let url= "http://172.30.170.188:8080/media-host";
+                let xhr = new XMLHttpRequest();                
+                xhr.open('GET',url,true);
+                xhr.send();
+                xhr.onreadystatechange = function(){
+                    if(this.readyState === 4 && this.status === 200){
+                        let response = JSON.parse(this.response);                        
+                        console.log(response.host);
+                        videoUrl = "http://"+response.host+":1935/NCCUMediaNetwork/mp4:test-video.mp4/manifest.mpd"
+                    }
+                };
+
+
+                //player
+                let player=videojs('myVideo');                          
+                //var lastLearnTime=null;
                 player.ready(function(){
                     player.src({
                         src:videoUrl,
                         type:"application/dash+xml"
                     })
-
+                    
+                    
                     player.play();
 
+
                     player.on('loadstart', function() {
-                        console.log('loadstart')
+                        console.log('loadstart');                       
                     });
 
                     player.on('loadedmetadata', function() {
-                        console.log('loadedmetadata-載入完成')              
+                        console.log('loadedmetadata-视频源数据加载完成')
+                        //设置上次播放时间lastLearnTime(秒)                       
                         player.currentTime(lastLearnTime);
-                        console.log(`現在時間${player.currentTime()}`)                        
+                        console.log(`目前的时间点是${player.currentTime()}`)                        
                     });
                     player.on('loadeddata', function() {
-                        console.log('loadeddata-渲染畫面'); 
+                        console.log('loadeddata-渲染播放画面'); //autoPlay必须为false
                     });
 
                     player.on('error', function() {
-                        console.log('error');
+                        console.log('error');                   
                         //monitor api
                     });
 
                     player.on('waiting', function() {
                         console.log('waiting');
                         //monitor api
+                        xhr.open('GET',url,true);
+                        xhr.send();
+                        xhr.onreadystatechange = function(){
+                            if(this.readyState === 4 && this.status === 200){
+                                let response = JSON.parse(this.response);                        
+                                console.log(response.host);
+                                videoUrl = "http://"+response.host+":1935/NCCUMediaNetwork/mp4:test-video.mp4/manifest.mpd"
+                            }
+                        };
                     });
 
                     player.on('progress', function() {
-                        console.log('progress');
+                        console.log('progress-加载过程');
                         console.log(videoUrl);
                     });
                 
@@ -142,7 +166,7 @@
                 
                     // 使用事件监听
                     player.on('ended', function() {
-                        console.log('播放結束');
+                        videojs.log('播放结束了!');
                     });
                 })
             },
