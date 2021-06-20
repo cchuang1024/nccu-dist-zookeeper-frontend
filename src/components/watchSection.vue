@@ -18,7 +18,8 @@
                 <div class="col-lg-6 p-3 pt-lg-0 content">
                     <h3>{{videoInfo.title}}</h3>
                     <p class="font-italic">
-                        {{videoInfo.description}}
+                        {{videoInfo.description}}<br><br>
+                        server: {{host}}
                     </p>
                 </div>
             </div>
@@ -66,32 +67,34 @@
     import 'dashjs' ;
     import 'videojs-contrib-dash';
     import 'video.js/dist/video-js.css';
-    import axios from 'axios';
+    import axios from "axios";
 
     let lastLearnTime = null;
     export default {
         name: "playerSection",
         props:["videoInfo"],
         mounted() {
-            this.getVideoInfo();
+            this.player();
         },
         activated() {
-            this.getVideoInfo();
+            this.player();
         },
         data(){
             return{
-                host: ""
+                host: "172.23.187.202"
             }
         },
         watch: {
             videoInfo: function () {
-                this.getVideoInfo();
+                // this.getVideoInfo();
             },
         },
         methods:{
             player(){
+                let flag=0;
                 let player=videojs('myVideo');
                 let videoUrl = "http://" + this.host + ":1935" + this.videoInfo.Url;
+                let vm= this;
                 
                 player.ready(function(){
                     player.src({
@@ -108,25 +111,31 @@
                     player.on('loadedmetadata', function() {
                         console.log('loadedmetadata-載入完成')              
                         player.currentTime(lastLearnTime);
-                        console.log(`現在時間${player.currentTime()}`)                        
+                        console.log(`現在時間${player.currentTime()}`)
                     });
+
                     player.on('loadeddata', function() {
                         console.log('loadeddata-渲染畫面'); 
                     });
 
                     player.on('error', function() {
                         console.log('error');
-                        this.getVideoInfo();
-                    });
-
-                    player.on('waiting', function() {
-                        console.log('waiting');
-                        this.getVideoInfo();
                     });
 
                     player.on('progress', function() {
                         console.log('progress');
                         console.log(videoUrl);
+
+                        player.on('waiting', function() {
+                            console.log('waiting');
+                            flag++;
+                            console.log(flag);
+                            if(flag<5){
+                                setTimeout(() => {
+                                    vm.getVideoInfo();
+                                }, 1000);
+                            }
+                        });
                     });
                 
                     //播放时长(秒)
@@ -149,14 +158,16 @@
                 })
             },
             getVideoInfo(){
+                console.log("redirect");
+
                 axios({
                     method: 'get',
                     url: '/api/media-host'
                 })
-                     .then(response => {
-                    this.host = response.data.host;
-                }).then(
-                    this.player
+                    .then((response) => {
+                        this.host = response.data.host;
+                    }).then(
+                        this.player()
                 )
             }
         }

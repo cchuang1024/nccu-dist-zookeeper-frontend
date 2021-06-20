@@ -69,7 +69,7 @@ Vue.mixin({
         },
       ],
     }
-  }
+  },
 })
 
 new Vue({
